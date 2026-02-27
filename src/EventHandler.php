@@ -3,16 +3,19 @@
 namespace App;
 
 use App\Event\EventFactory;
+use App\Event\EventNotifier;
 
 class EventHandler
 {
     private FileStorage $storage;
     private StatisticsManager $statisticsManager;
+    private EventNotifier $notifier;
     
-    public function __construct(string $storagePath, ?StatisticsManager $statisticsManager = null)
+    public function __construct(string $storagePath, ?StatisticsManager $statisticsManager = null, ?EventNotifier $notifier = null)
     {
         $this->storage = new FileStorage($storagePath);
         $this->statisticsManager = $statisticsManager ?? new StatisticsManager(__DIR__ . '/../storage/statistics.txt');
+        $this->notifier = $notifier ?? new LogNotifier(__DIR__ . '/../storage/notifications.log');
     }
     
     public function handleEvent(array $data): array
@@ -20,16 +23,11 @@ class EventHandler
         if (!isset($data['type'])) {
             throw new \InvalidArgumentException('Event type is required');
         }
-        
-        // $event = [
-        //     'type' => $data['type'],
-        //     'timestamp' => time(),
-        //     'data' => $data
-        // ];
 
         $event = EventFactory::create($data);
         
         $this->storage->save($event->toArray());
+        $this->notifier->notify($event);
         
         // Update statistics for foul events
         if ($data['type'] === 'foul') {

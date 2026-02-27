@@ -171,3 +171,10 @@ The project includes:
 └── storage/                  # Files with saved events and statistics
 ```
 
+## Future improvements
+
+- introduce event queue RabbitMQ
+- replace file storage with PostgreSQL
+- implement WebSocket server for real-time updates
+- introduce event sourcing
+- add caching layer (Redis)
