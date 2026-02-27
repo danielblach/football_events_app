@@ -16,7 +16,13 @@ class EventFactory
                 $data['minute'],
                 $data['second']
             ),
-
+            'goal' => new GoalEvent(
+                $data['player'],
+                $data['team_id'],
+                $data['match_id'],
+                $data['minute'],
+                $data['second']
+            ),
             default => throw new InvalidArgumentException('Unsupported event type')
         };
     }

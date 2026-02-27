@@ -43,6 +43,20 @@ class EventHandler
                 'fouls'
             );
         }
+
+        // Update statistics for goal events
+        if ($data['type'] === 'goal') {
+            if (!isset($data['match_id']) || !isset($data['team_id'])) {
+                throw new \InvalidArgumentException('match_id and team_id are required for goal events');
+            }
+            
+            $this->statisticsManager->updateTeamStatistics(
+                $data['match_id'],
+                $data['team_id'],
+                'goals'
+            );
+        }
+        
         
         return [
             'status' => 'success',
