@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Event\EventFactory;
+
 class EventHandler
 {
     private FileStorage $storage;
@@ -19,13 +21,15 @@ class EventHandler
             throw new \InvalidArgumentException('Event type is required');
         }
         
-        $event = [
-            'type' => $data['type'],
-            'timestamp' => time(),
-            'data' => $data
-        ];
+        // $event = [
+        //     'type' => $data['type'],
+        //     'timestamp' => time(),
+        //     'data' => $data
+        // ];
+
+        $event = EventFactory::create($data);
         
-        $this->storage->save($event);
+        $this->storage->save($event->toArray());
         
         // Update statistics for foul events
         if ($data['type'] === 'foul') {
