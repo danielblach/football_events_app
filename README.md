@@ -7,19 +7,19 @@ Simple application for handling football events - recruitment task.
 The following business requirements must be met by the solution:
 
 ### Core business requirements
-- [ ] System accurately logs and updates statistics upon receiving a **goal** event, including details such as scorer, assisting player, team, minute, and match ID.
-- [ ] System accurately logs and updates records upon receiving a **foul** event, including details such as player at fault, affected player, team, match ID, and precise time of the foul.
-- [ ] All event data is permanently stored and retrievable
-- [ ] Relevant statistics are calculated and maintained for both event types
-- [ ] Clients receive information about all events in real-time
-- [ ] Data integrity is maintained at all times
-- [ ] Historical data is preserved and accessible
-- [ ] System can handle high volume of events
+- [x] System accurately logs and updates statistics upon receiving a **goal** event, including details such as scorer, assisting player, team, minute, and match ID.
+- [x] System accurately logs and updates records upon receiving a **foul** event, including details such as player at fault, affected player, team, match ID, and precise time of the foul.
+- [x] All event data is permanently stored and retrievable
+- [x] Relevant statistics are calculated and maintained for both event types
+- [x] Clients receive information about all events in real-time
+- [x] Data integrity is maintained at all times
+- [x] Historical data is preserved and accessible
+- [x] System can handle high volume of events
 
 ### Client communication requirements
-- [ ] All clients receive event notifications
-- [ ] Information is delivered in a timely manner
-- [ ] Communication is reliable and consistent
+- [x] All clients receive event notifications
+- [x] Information is delivered in a timely manner
+- [x] Communication is reliable and consistent
 
 ### Recruitment requirements
 - [ ] The solution should be provided as a GitHub repository at new branch with at least three meaningful commits
