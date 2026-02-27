@@ -47,10 +47,17 @@ if ($method === 'POST' && $path === '/event') {
                 'statistics' => $stats
             ]);
         } elseif ($matchId) {
-            // Get all team statistics for specific match
+            // Get all teams statistics for specific match
             $stats = $statsManager->getMatchStatistics($matchId);
             echo json_encode([
                 'match_id' => $matchId,
+                'statistics' => $stats
+            ]);
+        } elseif ($teamId) {
+            // Get team all statistics
+            $stats = $statsManager->getTeamAllStatistics($teamId);
+            echo json_encode([
+                'team_id' => $teamId,
                 'statistics' => $stats
             ]);
         } else {

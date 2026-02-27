@@ -44,6 +44,23 @@ class StatisticsManager
         $stats = $this->getStatistics();
         return $stats[$matchId][$teamId] ?? [];
     }
+
+    public function getTeamAllStatistics(string $teamId): array
+    {
+        $stats = $this->getStatistics();
+        $teamStats = [];
+
+        foreach ($stats as $match) {
+            if (isset($match[$teamId])) {
+                $teamStats[] = [
+                    'match_id' => array_search($match, $stats),
+                    'statistics' => $match[$teamId]
+                ];
+            }
+        }
+
+        return $teamStats;
+    }
     
     public function getMatchStatistics(string $matchId): array
     {
